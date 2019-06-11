@@ -1,6 +1,5 @@
 # internshala-deepsearch
-A slightly improved keyword search and retrieval for internshala internships.
-
+A slightly improved keyword search and retrieval for internshala internships built using python and Scrapy.
 
 The main file to work with is spirders/DeepSearch.py
 
