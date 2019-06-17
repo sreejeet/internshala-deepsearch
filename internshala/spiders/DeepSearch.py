@@ -3,6 +3,7 @@ import scrapy
 from datetime import datetime
 from ..items import InternshalaItem
 
+
 class DeepsearchSpider(scrapy.Spider):
     """ Internshala throttles requests, so there is a 0.5 second delay
     on each request. Fell free to modify it as per your requirements.
@@ -15,17 +16,24 @@ class DeepsearchSpider(scrapy.Spider):
     As usual, the user is responsible for ethical use of this or
     any software and the author shall not be liable in any manner.
     """
-    
+
     name = 'DeepSearch'
     allowed_domains = ['internshala.com']
     start_urls = ['https://internshala.com/internships/']
 
 
-    # Internships must contain these keywords 
+    # Internships must contain these keywords
     keywords = []
+    with open('keywords_must.txt') as key_must_file:
+        for line in key_must_file:
+           keywords.append(line.strip('\n'))
+
 
     # Internships must contain at least one these keywords 
-    keywords_any_one = ['from home', 'delhi', 'noida']
+    keywords_any_one = []
+    with open('keywords_any_one.txt') as key_any_one_file:
+        for line in key_any_one_file:
+           keywords_any_one.append(line.strip('\n'))
 
 
     def parse(self, response):
